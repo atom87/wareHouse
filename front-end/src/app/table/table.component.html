@@ -1,0 +1,44 @@
+<table class="table table-striped">
+    <thead class="thead-default">
+      <tr>
+        <th *ngIf="columns.dateOfCreation">
+          Date of Creation
+          <i class="fa fa-sort" aria-hidden="true" *ngIf="params.sort != 'dateOfCreation'"></i>
+          <i class="fa fa-sort-desc" aria-hidden="true" *ngIf="params.sort == 'dateOfCreation' && params.sortDirection == 'desc'"></i>
+          <i class="fa fa-sort-asc" aria-hidden="true" *ngIf="params.sort == 'dateOfCreation' && params.sortDirection == 'asc'"></i>
+        </th>
+        <th *ngIf="columns.dateOfRecording">
+          Date of Recording
+          <i class="fa fa-sort" aria-hidden="true" *ngIf="params.sort != 'dateOfRecording'"></i>
+          <i class="fa fa-sort-desc" aria-hidden="true" *ngIf="params.sort == 'dateOfRecording' && params.sortDirection == 'desc'"></i>
+          <i class="fa fa-sort-asc" aria-hidden="true" *ngIf="params.sort == 'dateOfRecording' && params.sortDirection == 'asc'"></i>
+        </th>
+        <th *ngIf="columns.status">
+          Status
+          <i class="fa fa-sort" aria-hidden="true" *ngIf="params.sort != 'status'"></i>
+          <i class="fa fa-sort-desc" aria-hidden="true" *ngIf="params.sort == 'status' && params.sortDirection == 'desc'"></i>
+          <i class="fa fa-sort-asc" aria-hidden="true" *ngIf="params.sort == 'status' && params.sortDirection == 'asc'"></i>
+        </th>
+        <th *ngIf="columns.transactionType" >
+          Transaction Type
+          <i class="fa fa-sort" aria-hidden="true" *ngIf="params.sort != 'transactionType'"></i>
+          <i class="fa fa-sort-desc" aria-hidden="true" *ngIf="params.sort == 'transactionType' && params.sortDirection == 'desc'"></i>
+          <i class="fa fa-sort-asc" aria-hidden="true" *ngIf="params.sort == 'transactionType' && params.sortDirection == 'asc'"></i>
+        </th>
+        <th *ngIf="columns.businessPartner">Business Partner</th>
+        <th *ngIf="columns.businessPartnerLocation">Business Partner Location</th>
+        <th *ngIf="columns.year">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let document of documents?.results" [routerLink]="[document._id]">
+        <td *ngIf="columns.dateOfCreation">{{document.dateOfCreation | date: 'MMM, d y'}}</td>
+        <td *ngIf="columns.dateOfRecording">{{document.dateOfRecording | date: 'MMM, d y'}}</td>
+        <td *ngIf="columns.status">{{document.status}}</td>
+        <td *ngIf="columns.transactionType">{{document.transactionType}}</td>
+        <td *ngIf="columns.businessPartner">{{document.businessPartner?.name}}</td>
+        <td *ngIf="columns.businessPartnerLocation">{{document.businessPartner?.city}}, {{document.businessPartner?.address}}</td>
+        <td *ngIf="columns.year">{{document.year}}</td>
+      </tr>
+    </tbody>
+  </table>
